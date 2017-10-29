@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	CANVAS
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<canvas id="canvas" width="500" height="300"></canvas>
+<script>
+	const canvas = document.getElementById("canvas");
+    const context = canvas.getContext("2d");
+	const a = [];
+	const colorArray = ['red', 'blue', 'orange'];
+	const rand = function(num) {
+	return Math.floor(Math.random() * num) + 1;
+};
+const createPoints = function(count, canvasWidth, canvasHeight) 
+{
+	if (count < 0)
+       	return;
+    const point =
+       {
+
+             x: rand(canvasWidth-30),
+             y: rand(canvasHeight-30),
+             width: 30,
+             height: 30,
+             xDelta: 1,
+             yDelta: 1,
+             color: colorArray[rand(3)-1]
+        }    
+        a[count-1]=point;
+     createPoints(count-1, canvasWidth, canvasHeight)   
+return a;
+};
+
+ const forEach = function(arr, func) {
+        const helper = function(idx) {
+            if(idx === arr.length)
+                return;
+
+            func(arr[idx]);
+            helper(idx + 1);
+        };
+
+        helper(0);
+    };
+const render = function()
+{   
+	context.clearRect(0, 0, canvas.width, canvas.height);
+	        forEach(a, function(a) {
+            context.fillStyle = a.color;
+            context.fillRect(a.x, a.y, a.width, a.height);
+        }); 
+       
+};
+const updateData = function()
+{
+
+   {
+        forEach(a, function(a) {
+        	if(a.x < 450)
+        		a.x += a.xDelta;
+        	else a.x=0;
+        	if(a.y < 270)
+        	a.y += a.yDelta;
+        else a.y=0;
+        });
+    };
+
+};
+const animate = function() {
+        updateData();
+        render();
+        window.setTimeout(animate, 10);
+    };
+    createPoints(10,500,300); 
+    animate();
+
+
+/*render(10,a);*/
+</script>

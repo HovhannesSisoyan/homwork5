@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	CANVAS
+	<title></title>
+</head>
+<body>
+
+</body>
+</html>
+<canvas id="canvas" width="500" height="300"></canvas>
+<script>
+	const a = [];
+	const rand = function(num) {
+	return Math.floor(Math.random() * num) + 1;
+};
+const createPoints = function(count, canvasWidth, canvasHeight) 
+{
+	if (count < 0)
+       	return;
+    const point =
+       {
+
+             x: rand(canvasWidth-30),
+             y: rand(canvasHeight-30),
+             width: 30,
+             height: 30,
+             xDelta: 1,
+             yDelta: 1,
+            color: 'blue'
+        }    
+        a[count-1]=point;
+     createPoints(count-1, canvasWidth, canvasHeight)   
+return a;
+    }
+b = createPoints(10,500,300);
+console.log(b[0].x);
+ </script>
